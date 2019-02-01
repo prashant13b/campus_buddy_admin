@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+ <section class="container">
+ <b-tabs v-model="activeTab"  type= "is-boxed">
+   
+            <b-tab-item label="Attendance">
+               <Attendance />
+            </b-tab-item>
+
+            <b-tab-item label="Assignment">
+                <Assignment />
+            </b-tab-item>
+
+             <b-tab-item label="Notice">
+              
+            </b-tab-item>
+
+             <b-tab-item label="Test">
+              
+            </b-tab-item>
+
+        </b-tabs>
+        </section>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import Attendance from '../components/homeComponents/Attendance'
+import Assignment from '../components/homeComponents/Assignment'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    Attendance,
+    Assignment
   },
+  data() {
+    return {
+      activeTab: 0,
+    }
+  },
+  
 };
 </script>

@@ -1,0 +1,15 @@
+{
+    "it":{
+        "1": ["Applied Mathematics", "Applied Physics", "Engineering Graphics", "English", "Programming in C"],
+        "2": ["Applied Mathematics", "Applied Physics", "Fundamentals of Computer Science and Technology", "Science, Technology & Society", "Basic Electrical Engineering", "Basic Mechanical Engineering"],
+        "3": ["Computer Organization", "Object Oriented Programming", "Data Structures & Algorithms", "Database Management System", "Digital Electronics", "Economics"],
+        "4": ["Management Information System", "Operating System", "Computer Networks", "Digital and Data Communication", "System Analysis and Design", "Human Computer Interaction"],
+        "5": ["Software Engineering", "Computer Graphics", "Analysis & Design of Algorithms", "Visual Programming", "Microprocessor", "Discrete Structures"],
+        "6": ["Object Oriented Software Engineering", "Web Technology", "Artificial Intelligence", "Computer Network Management", "Parallel Computing", "Core Java"],
+        "7": ["Natural Language Processing", "Modeling & Simulations", "e-Commerce & ERP", "Advance Java", "Wireless communication", "Professional Elective"],
+        "8": ["Multimedia Technology", "Information Systems Security", "Data Warehouse and Data Mining", "Open Elective", "Professional Elective"]
+    },
+    "cse": {
+
+    }
+}
