@@ -17,16 +17,16 @@
        
 
         <b-field  label="Select Subject" position="is-centered">
-                <b-select placeholder="Select Subject" v-model="subject"  required>
+                <b-select placeholder="Select Subject" @change.native="modalOpen" v-model="subject"  required>
                 <option v-for="(sub, index) in SubjectList" :key="`${index}`" :value="sub">{{sub}}</option>
             
             </b-select>
         </b-field>
 
 <b-collapse :open="false">
-             <button @click="modalOpen" v-if="subject" class="button is-primary" slot="trigger"> Open Marks Test Submission Dialog </button>
+             <button  v-if="subject" class="button is-primary" slot="trigger"> Open Marks Test Submission Dialog </button>
 
-            <div class="notification">
+            <div v-if="testRecived" class="notification">
                 <div v-for="test in Test" :key="test.id" class="content">
                    <div class="card" @click="testClicked(test.id)">
   <header class="card-header">
@@ -44,10 +44,25 @@
 </div>
                 </div>
             </div>
+
+
+<div v-else class="notification">
+<div class="content">
+
+<p>
+    No Test For Evaluation For Criteria
+</p>
+
+</div>
+
+
+</div>
+
+
         </b-collapse>
     
  <b-notification type="is-success" has-icon :active.sync="isSuccess">
-            Assignment Registered
+           Test Submitted   
                     </b-notification>
 
 
@@ -117,13 +132,14 @@ export default {
                 SubjectList: null,
                 Students : [],
                 Test: [],
-                testRecived: null,
+                testRecived: true,
                  marksList: {},
                  isSuccess : false,
                  isFail: false
         }
     }, methods: {
         semesterChange: function(){
+            this.testRecived = true
                  axios.get(`https://www.prashant13b.xyz/campus-buddy_admin/client/data/studentData/${this.branch}/${this.semester}.json`)
              .then(res => {
                  Object.keys(res.data).forEach((key , index) => {
@@ -137,16 +153,25 @@ export default {
         modalOpen: function(){
                 let TestArray = []
                 let vm = this
+                 vm.Test = TestArray
+                 console.log('wrokging');
+                 
                     let testRef = firebase.database().ref(`test/${this.branch.toUpperCase()}/${this.semester}`)
                     testRef.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     let childKey = childSnapshot.key;
     let childData = childSnapshot.val();
-            if (!childData.done) {
+    
+            if (!childData.done && childData.subject == vm.subject) {
                TestArray = [...TestArray,{name:childData.testDetails,id:childKey}]
             }
-  })
+            
+  })   
+   if(TestArray.length)
+        vm.testRecived = false
+   else 
         vm.Test = TestArray
+    
 });
          
         },
@@ -188,5 +213,7 @@ export default {
 </script>
 
 <style scoped>
-
+*{
+    text-align: left;
+}
 </style>

@@ -34,8 +34,6 @@
                     </header>
                     <section class="modal-card-body">
 
-
-                        {{PresentStudents}}
         
                         <div v-for="(student,index) in Students"  :key="`${index}`">
                            <input @change="updatePresent" type="checkbox"  :value="student.rollNo"  > 

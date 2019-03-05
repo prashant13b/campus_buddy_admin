@@ -7,7 +7,7 @@
             </b-tab-item>
 
             <b-tab-item label="Assignment Submission">
-               
+               <AssignmentSubmission />
             </b-tab-item>
 
             <b-tab-item label="Test Mark Submission">
@@ -20,11 +20,13 @@
 <script>
 import Register from '../components/studentComponent/Register.vue'
 import TestSubmission from '../components/studentComponent/TestSubmission'
-export default {
+import AssignmentSubmission from '../components/studentComponent/AssignmentSubmission'
+export default { 
  name: 'student',
   components: {
    Register,
-   TestSubmission
+   TestSubmission,
+   AssignmentSubmission
   },
   data() {
     return {
