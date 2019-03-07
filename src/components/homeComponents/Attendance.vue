@@ -109,10 +109,7 @@ export default {
             this.isComponentModalActive = false
                 this.PresentStudents.forEach(element => {
 
-     firebase.database().ref(`attendance/${this.branch.toUpperCase()}/${this.semester}/${this.subject}/${element}`)
-                .transaction(function (value) {
-                    return (value || 0) + 1
-                })
+     
         
         firebase.database().ref(`attendance/${this.branch.toUpperCase()}/${this.semester}/${this.subject}/total`)
             .transaction(function (value) {
@@ -129,7 +126,10 @@ export default {
 
                 })
        
-
+                firebase.database().ref(`attendance/${this.branch.toUpperCase()}/${this.semester}/${this.subject}/${element}`)
+                .transaction(function (value) {
+                    return (value || 0) + 1
+                })
 
 
         },updatePresent: function (e) {

@@ -97,7 +97,8 @@ export default {
              this.SubjectList = Subject[this.branch][this.semester]
 
             
-        }
+        },
+        
     },
 }
 </script>

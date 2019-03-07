@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-
+<b-loading v-else-if="isLoading" :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="false"></b-loading>
 <div v-else class="notification">
 <div class="content">
 
@@ -132,6 +132,8 @@ export default {
                 SubjectList: null,
                 Students : [],
                 Test: [],
+                isFullPage: false,
+                isLoading: false,
                 testRecived: true,
                  marksList: {},
                  isSuccess : false,
@@ -154,23 +156,31 @@ export default {
                 let TestArray = []
                 let vm = this
                  vm.Test = TestArray
-                 console.log('wrokging');
-                 
+                vm.isLoading = true 
                     let testRef = firebase.database().ref(`test/${this.branch.toUpperCase()}/${this.semester}`)
                     testRef.once('value', function(snapshot) {
   snapshot.forEach(function(childSnapshot) {
     let childKey = childSnapshot.key;
     let childData = childSnapshot.val();
-    
+     //       console.log(childData);
+            
             if (!childData.done && childData.subject == vm.subject) {
+              //  console.log('working');
+                
                TestArray = [...TestArray,{name:childData.testDetails,id:childKey}]
             }
             
   })   
-   if(TestArray.length)
-        vm.testRecived = false
+ // console.log(TestArray);
+  
+   if(TestArray.length){
+     vm.Test = TestArray
+     vm.testRecived = true
+   }
    else 
-        vm.Test = TestArray
+      vm.testRecived = false
+
+    vm.isLoading = false
     
 });
          
@@ -178,9 +188,9 @@ export default {
         testClicked: function(id){
             this.testRecived  = id
             let list = {}
-            this.Students.forEach(stduent => {
+            this.Students.forEach(student => {
                
-                list[stduent.rollNo] = 0
+                list[student.rollNo] = 0
             })
             this.marksList = list
             this.isComponentModalActive = true

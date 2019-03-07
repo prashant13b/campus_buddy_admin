@@ -107,7 +107,7 @@ export default {
         
           firebase.database().ref(`test/${this.branch.toUpperCase()}/${this.semester}`).push({
             subject: this.subject,
-            testDetails: this.assignmentDetail,
+            testDetails: this.testDetail,
             date: date,
             done: false
         },error => {
