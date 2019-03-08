@@ -36,7 +36,7 @@
        <b-loading :is-full-page="isFullPage" :active.sync="isLoading" :can-cancel="false"></b-loading>
 
           <b-notification type="is-success" has-icon :active.sync="isSuccess">
-            Assignment Registered
+            Notice Registered
                     </b-notification>
 
 
